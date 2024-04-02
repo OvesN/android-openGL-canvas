@@ -28,6 +28,8 @@ import androidx.annotation.Nullable;
 import com.chillingvan.canvasgl.shapeFilter.DrawShapeFilter;
 import com.chillingvan.canvasgl.textureFilter.TextureFilter;
 
+import java.nio.FloatBuffer;
+
 //
 // GLCanvas gives a convenient interface to draw using OpenGL.
 //
@@ -226,6 +228,8 @@ public interface GLCanvas {
     void setOnPreDrawTextureListener(GLES20Canvas.OnPreDrawTextureListener l);
 
     void setOnPreDrawShapeListener(OnPreDrawShapeListener l);
+
+    void drawPolyline(float[] vertices, DrawShapeFilter drawShapeFilter, GLPaint paint);
 
     interface OnPreDrawTextureListener {
         void onPreDraw(int textureProgram, BasicTexture texture, TextureFilter textureFilter);

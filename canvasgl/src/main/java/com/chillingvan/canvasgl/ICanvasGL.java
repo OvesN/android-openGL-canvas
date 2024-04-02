@@ -35,11 +35,14 @@ import com.chillingvan.canvasgl.glcanvas.GLPaint;
 import com.chillingvan.canvasgl.glcanvas.RawTexture;
 import com.chillingvan.canvasgl.matrix.BaseBitmapMatrix;
 import com.chillingvan.canvasgl.matrix.IBitmapMatrix;
+import com.chillingvan.canvasgl.shapeFilter.DrawShapeFilter;
 import com.chillingvan.canvasgl.textureFilter.TextureFilter;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.nio.FloatBuffer;
 
 /**
  * Created by Matthew on 2016/9/26.
@@ -90,7 +93,7 @@ public interface ICanvasGL {
     void drawCircle(float x, float y, float radius, GLPaint paint);
 
     void drawLine(float startX, float startY, float stopX, float stopY, GLPaint paint);
-
+    void drawPolyline(float[] vertices, DrawShapeFilter filter, GLPaint paint);
 
     void drawRect(@NonNull RectF rect, @NonNull GLPaint paint);
 

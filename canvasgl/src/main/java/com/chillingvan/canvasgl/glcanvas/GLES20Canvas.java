@@ -464,6 +464,28 @@ public class GLES20Canvas implements GLCanvas {
     }
 
     @Override
+    public void drawPolyline(float[] vertices, DrawShapeFilter drawShapeFilter, GLPaint paint) {
+        setupDrawShapeFilter(drawShapeFilter);
+        Buffer vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer()
+                .put(vertices);
+
+        vertexBuffer.position(0);
+
+        int bufferId = uploadBuffer(vertexBuffer, FLOAT_SIZE);
+
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertices.length / 3);
+
+        //TODO delete??
+
+//        GLES20.glDisableVertexAttribArray(drawShapeFilter.getVertexShader());
+//        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+//        GLES20.glDeleteBuffers(1, buffers, 0);
+
+    }
+
+    @Override
     public void drawLine(float x1, float y1, float x2, float y2, GLPaint paint, DrawShapeFilter drawShapeFilter) {
         setupDrawShapeFilter(drawShapeFilter);
         draw(GLES20.GL_LINE_STRIP, OFFSET_DRAW_LINE, COUNT_LINE_VERTEX, x1, y1, x2 - x1, y2 - y1,
@@ -1099,5 +1121,6 @@ public class GLES20Canvas implements GLCanvas {
     public void setOnPreDrawShapeListener(OnPreDrawShapeListener l) {
         this.onPreDrawShapeListener = l;
     }
+
 
 }

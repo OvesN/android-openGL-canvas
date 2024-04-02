@@ -44,6 +44,7 @@ import com.chillingvan.canvasgl.textureFilter.BasicTextureFilter;
 import com.chillingvan.canvasgl.textureFilter.FilterGroup;
 import com.chillingvan.canvasgl.textureFilter.TextureFilter;
 
+import java.nio.FloatBuffer;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -302,6 +303,10 @@ public class CanvasGL implements ICanvasGL {
         glCanvas.drawLine(startX, startY, stopX, stopY, paint, defaultDrawShapeFilter);
     }
 
+    @Override
+    public void drawPolyline(float[] vertices, DrawShapeFilter filter, GLPaint paint) {
+        glCanvas.drawPolyline(vertices, filter, paint);
+    }
 
     @Override
     public void drawRect(@NonNull RectF rect, GLPaint paint) {
